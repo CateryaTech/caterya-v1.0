@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "caterya.trace/v1",
+  "title": "CATERYA System Trace",
+  "type": "object",
+  "required": [
+    "trace_id",
+    "goal",
+    "steps"
+  ],
+  "properties": {
+    "trace_id": {
+      "type": "string"
+    },
+    "goal": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "object"
+    },
+    "meta": {
+      "type": "object"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "type"
+        ],
+        "properties": {
+          "index": {
+            "type": "integer"
+          },
+          "type": {
+            "enum": [
+              "prompt",
+              "plan",
+              "tool_call",
+              "tool_result",
+              "retrieval",
+              "observation",
+              "decision",
+              "action",
+              "human_override",
+              "error",
+              "output"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "content": {
+            "type": "string"
+          },
+          "ok": {
+            "type": "boolean"
+          },
+          "scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "side_effect": {
+            "type": "number"
+          },
+          "meta": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

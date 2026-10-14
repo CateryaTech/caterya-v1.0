@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "caterya.car/v1",
+  "title": "CATERYA Assurance Record (CAR)",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "car_id",
+    "version",
+    "system",
+    "model",
+    "deployment",
+    "evaluation",
+    "domains",
+    "risk",
+    "evidence",
+    "coverage",
+    "disposition",
+    "validity",
+    "level",
+    "content_hash",
+    "signature"
+  ],
+  "properties": {
+    "car_id": {
+      "type": "string",
+      "pattern": "^CAR-[0-9]{4}-[0-9]{6}$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "prev_hash": {
+      "type": "string"
+    },
+    "system": {
+      "type": "object",
+      "required": [
+        "name",
+        "type",
+        "version"
+      ]
+    },
+    "model": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model_id",
+        "model_version"
+      ]
+    },
+    "deployment": {
+      "type": "object"
+    },
+    "evaluation": {
+      "type": "object",
+      "required": [
+        "profile",
+        "methodology",
+        "evaluator",
+        "timestamp"
+      ]
+    },
+    "domains": {
+      "type": "object"
+    },
+    "risk": {
+      "type": "object",
+      "required": [
+        "level",
+        "findings",
+        "unresolved"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "artifacts",
+        "hashes"
+      ]
+    },
+    "disposition": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "EVALUATED",
+            "REVIEW_REQUIRED",
+            "CONDITIONALLY_ASSURED",
+            "ASSURED",
+            "REJECTED",
+            "EXPIRED"
+          ]
+        }
+      }
+    },
+    "validity": {
+      "type": "object",
+      "required": [
+        "issued_at",
+        "valid_until"
+      ]
+    },
+    "level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  }
+}

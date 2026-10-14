@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caterya"
+version = "1.0.0a2"
+description = "CATERYA AI ASSURANCE INFRASTRUCTURE — open, vendor-neutral evaluation, evidence and assurance for AI systems."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Ary H. H.", email = "contact@cateryatech.example" }]
+keywords = ["ai-assurance", "ai-safety", "evaluation", "provenance", "llm", "agents", "governance"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = []                      # core is stdlib-only by design
+
+[project.optional-dependencies]
+api     = ["fastapi>=0.110", "uvicorn>=0.29", "pydantic>=2.6"]
+crypto  = ["cryptography>=42"]
+yaml    = ["pyyaml>=6"]
+quantum = ["numpy>=1.26"]
+quantum-backends = ["numpy>=1.26", "pennylane>=0.36", "qiskit>=1.0", "qiskit-aer>=0.14"]
+viz     = ["plotly>=5.20"]
+hf      = ["transformers>=4.40", "torch>=2.2"]
+dev     = ["pytest>=8", "httpx>=0.27", "ruff>=0.4", "mypy>=1.10"]
+all     = ["caterya[api,crypto,yaml,quantum,viz]"]
+
+[project.scripts]
+caterya = "caterya.cli.main:main"
+
+[project.urls]
+Homepage = "https://github.com/cateryatech/caterya-v1.0"
+Issues = "https://github.com/cateryatech/caterya-v1.0/issues"
+Predecessor = "https://github.com/CateryaTech/CATERYA-Framework-3.0"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+caterya = ["py.typed", "ui/static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501", "E701", "E702", "B008", "E741", "B905", "B007"]

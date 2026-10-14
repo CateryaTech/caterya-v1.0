@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "caterya.evidence/v1",
+  "title": "CATERYA Evidence",
+  "description": "A verifiable measurement: claim + method hash + data hash + seed + result + CI + limits + chain + signature. content_hash = <algo>:hex(hash(canonical_json(record without id, content_hash, signature))); signature signs the content_hash string.",
+  "type": "object",
+  "required": [
+    "spec_version",
+    "claim",
+    "system_under_test",
+    "metric",
+    "metric_spec_hash",
+    "dataset_hash",
+    "seed",
+    "result",
+    "unit",
+    "ci_95",
+    "n",
+    "limitations",
+    "untested",
+    "raw_outputs_hash",
+    "timestamp",
+    "domain",
+    "profile",
+    "mode",
+    "evaluator",
+    "context",
+    "visibility",
+    "prev_hash",
+    "content_hash",
+    "signature"
+  ],
+  "properties": {
+    "spec_version": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "claim": {
+      "type": "string"
+    },
+    "system_under_test": {
+      "type": "string"
+    },
+    "metric": {
+      "type": "string"
+    },
+    "metric_spec_hash": {
+      "type": "string"
+    },
+    "dataset_hash": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "result": {
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "unit": {
+      "type": "string"
+    },
+    "ci_95": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "n": {
+      "type": "integer"
+    },
+    "limitations": {
+      "type": "array"
+    },
+    "untested": {
+      "type": "array"
+    },
+    "raw_outputs_hash": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string"
+    },
+    "evaluator": {
+      "type": "object"
+    },
+    "context": {
+      "type": "object"
+    },
+    "visibility": {
+      "type": "string"
+    },
+    "prev_hash": {
+      "type": "string"
+    },
+    "content_hash": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

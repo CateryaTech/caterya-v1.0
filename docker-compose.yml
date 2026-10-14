@@ -1,0 +1,10 @@
+services:
+  caterya:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      CATERYA_API_KEY: "${CATERYA_API_KEY:-}"            # set to protect mutating endpoints
+      CATERYA_ALLOWED_ENDPOINTS: '["https://api.openai.com","https://api.anthropic.com"]'
+    volumes: ["caterya-data:/data"]
+volumes:
+  caterya-data:

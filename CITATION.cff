@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use CATERYA, please cite it."
+title: "CATERYA AI Assurance Infrastructure"
+type: software
+version: 1.0.0-alpha.1
+license: Apache-2.0
+repository-code: "https://github.com/cateryatech/caterya-v1.0"
+authors:
+  - family-names: "H. H."
+    given-names: "Ary"
+abstract: "Open, vendor-neutral infrastructure for AI evaluation, verifiable evidence, provenance and continuous assurance."
+keywords: [ai-assurance, evaluation, provenance, governance]
