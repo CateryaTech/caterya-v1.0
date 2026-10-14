@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATERYA AI Assurance Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#fff;--ink:#0d1624;--mute:#5a6678;--line:#d9dfe8;--wash:#f4f6fa;--cobalt:#1635e8;--ok:#07745a;--warn:#a85f00;--bad:#c1122f;--info:#4b5a73;
+ --display:'Orbitron','Eurostile','Bank Gothic',system-ui,sans-serif;--body:'Rajdhani','Segoe UI',system-ui,sans-serif;--mono:'Share Tech Mono',ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{background:#fff;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font:500 17px/1.45 var(--body);display:grid;grid-template-columns:232px 1fr;min-height:100vh}
+a{color:var(--cobalt)}:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+nav{border-right:1px solid var(--line);padding:22px 0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:2px;background:#fff}
+.brand{padding:0 20px 18px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.brand b{font:900 21px/1 var(--display);letter-spacing:.14em;display:block}.brand span{font:600 11px/1.3 var(--display);letter-spacing:.06em;color:var(--mute);display:block;margin-top:6px}
+nav button{all:unset;cursor:pointer;padding:9px 20px;font:600 17px var(--body);color:var(--mute);border-left:3px solid transparent}
+nav button:hover{color:var(--ink);background:var(--wash)}nav button[aria-current=page]{color:var(--ink);border-left-color:var(--cobalt);background:var(--wash)}
+nav .foot{margin-top:auto;padding:14px 20px;font:13px var(--mono);color:var(--mute);border-top:1px solid var(--line)}
+main{padding:28px 36px 60px;max-width:1180px;width:100%}
+h1{font:700 26px/1.15 var(--display);letter-spacing:.05em;margin:0 0 4px}h2{font:700 15px var(--display);letter-spacing:.06em;margin:30px 0 10px}
+p.lead{color:var(--mute);margin:0 0 22px;max-width:70ch}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:end;margin:10px 0}
+label{display:flex;flex-direction:column;font:600 13px var(--body);color:var(--mute);gap:3px}
+input,select,textarea,button.act{font:500 16px var(--body);color:var(--ink);background:#fff;border:1px solid #aab4c4;border-radius:2px;padding:7px 10px;min-width:150px}
+button.act{cursor:pointer;background:var(--ink);color:#fff;border-color:var(--ink);font-weight:700;letter-spacing:.03em}button.act:hover{background:var(--cobalt);border-color:var(--cobalt)}button.act.ghost{background:#fff;color:var(--ink)}
+table{border-collapse:collapse;width:100%;font-size:16px}th{font:700 12px var(--display);letter-spacing:.05em;text-align:left;color:var(--mute);border-bottom:2px solid var(--ink);padding:7px 8px}
+td{border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}tr.click{cursor:pointer}tr.click:hover td{background:var(--wash)}
+.mono{font-family:var(--mono);font-size:14px;word-break:break-all}.mute{color:var(--mute)}
+.chip{font:700 11px var(--display);letter-spacing:.05em;padding:3px 7px;border:1px solid currentColor;border-radius:2px;white-space:nowrap}
+.pass{color:var(--ok)}.warn{color:var(--warn)}.fail,.critical,.high{color:var(--bad)}.inconclusive{color:var(--warn)}.untested,.info,.low{color:var(--info)}.moderate{color:var(--warn)}
+.hero{display:grid;grid-template-columns:minmax(260px,330px) 1fr;gap:34px;align-items:start;border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:6px}
+.ladder{display:flex;flex-direction:column-reverse;gap:5px}
+.rung{display:grid;grid-template-columns:34px 1fr;align-items:center;border:1px solid var(--line);padding:8px 10px;color:var(--mute);gap:8px}
+.rung i{font:700 20px var(--display);font-style:normal}.rung small{font:600 14px var(--body)}
+.rung.on{border-color:var(--ink);color:var(--ink);background:var(--wash)}.rung.top{border:2px solid var(--cobalt);color:var(--cobalt);background:#fff}.rung.top i{color:var(--cobalt)}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;border:1px solid var(--line);margin:14px 0}
+.kv div{padding:10px 14px;border-right:1px solid var(--line)}.kv div:last-child{border-right:0}.kv small{display:block;color:var(--mute);font-size:13px}.kv b{font:700 18px var(--display);letter-spacing:.03em}
+.note{border-left:3px solid var(--cobalt);background:var(--wash);padding:9px 14px;margin:12px 0;font-size:16px}
+.banner{background:#fff6e5;border:1px solid #e8c37a;padding:8px 14px;margin-bottom:14px;color:#6b4300;display:none}
+pre{background:var(--wash);border:1px solid var(--line);padding:12px;overflow:auto;font:13px/1.4 var(--mono);max-height:340px}
+.chain{display:flex;flex-direction:column;gap:0}.link{border:1px solid var(--line);padding:8px 12px;border-top:0;font:13px var(--mono)}.link:first-child{border-top:1px solid var(--line)}
+.sv{display:block;margin:0 auto}
+@media(max-width:860px){body{grid-template-columns:1fr}nav{position:static;height:auto;flex-direction:row;flex-wrap:wrap;border-right:0;border-bottom:1px solid var(--line)}.brand{width:100%;border:0}nav .foot{display:none}.hero{grid-template-columns:1fr}main{padding:20px 16px}}
+</style>
+</head>
+<body>
+<nav aria-label="Navigasi utama">
+  <div class="brand"><b>CATERYA</b><span>AI Assurance Infrastructure</span></div>
+  <button data-p="overview">Ringkasan</button><button data-p="evaluate">Evaluasi</button><button data-p="evidence">Evidence</button>
+  <button data-p="records">Assurance records</button><button data-p="regression">Regresi</button><button data-p="provenance">Provenance</button>
+  <button data-p="monitor">Monitoring</button><button data-p="regulatory">Regulasi</button><button data-p="settings">Parameter</button>
+  <div class="foot" id="ver">v–</div>
+</nav>
+<main><div class="banner" id="offline">API tidak terjangkau. Menampilkan data contoh statis. Jalankan <span class="mono">caterya serve</span>.</div><div id="view"></div></main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const api=async(p,o)=>{const r=await fetch(p,o&&{...o,headers:{'Content-Type':'application/json',...(KEY?{Authorization:'Bearer '+KEY}:{})},body:o.body&&JSON.stringify(o.body)});if(!r.ok){let m;try{m=(await r.json());m=m.error||JSON.stringify(m.detail||m)}catch{m=r.statusText}throw new Error(m)}const t=r.headers.get('content-type')||'';return t.includes('json')?r.json():r.text()};
+let KEY='',S={cars:[],sel:null,car:null,evs:[],page:'overview'};
+const fmt=v=>v==null?'—':(+v).toFixed(3),chip=s=>`<span class="chip ${esc(s)}">${esc(String(s).toUpperCase())}</span>`;
+const SAMPLE={car_id:'CAR-DEMO',version:1,system:{name:'contoh-sistem',version:'0.0.0'},level:2,level_label:'Evidence-Backed',disposition:{status:'EVALUATED',recommended:'CONDITIONALLY_ASSURED',conditions:['contoh data, jalankan evaluasi nyata'],decided_by:''},risk:{level:'moderate',residual_level:'moderate',findings:[]},evaluation:{id:'EVAL-DEMO',profile:'CATERYA-LLM',timestamp:'—'},validity:{valid_until:'—'},coverage:{untested:[]},cos:{cos:null},evidence:{merkle_root:'—',count:0},content_hash:'—',signer:{key_id:'—',alg:'—'},domains:{robustness:{score:.9,metrics:{robustness_perturbation_v1:{value:.9,ci_95:[.8,.95],n:30,status:'pass'}}},safety:{score:.8,metrics:{policy_adherence_v1:{value:.8,ci_95:[.6,.9],n:12,status:'warn'}}},fairness:{score:.95,metrics:{}},privacy:{score:.7,metrics:{}},reliability:{score:.88,metrics:{}}}};
+async function boot(){try{const h=await api('/v1/health');$('#ver').textContent='v'+h.version+' · '+h.signer.alg;$('#offline').style.display='none';await refresh()}catch(e){$('#offline').style.display='block';S.cars=[];S.car=SAMPLE}go(S.page)}
+async function refresh(keep){S.cars=await api('/v1/assurance');if(S.cars.length){const id=keep&&S.sel||S.cars[S.cars.length-1].car_id;await pick(id)}else S.car=null}
+async function pick(id){S.sel=id;S.car=await api('/v1/assurance/'+id);S.evs=await api('/v1/evidence?evaluation_id='+S.car.evaluation.id)}
+function go(p){S.page=p;document.querySelectorAll('nav button').forEach(b=>b.toggleAttribute('aria-current',b.dataset.p===p)&&b.setAttribute('aria-current','page'));document.querySelectorAll('nav button').forEach(b=>{if(b.dataset.p!==p)b.removeAttribute('aria-current')});(V[p]||V.overview)()}
+document.querySelector('nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.p)});
+const picker=()=>`<label>Assurance record<select id="pk">${S.cars.map(c=>`<option ${c.car_id===S.sel?'selected':''} value="${esc(c.car_id)}">${esc(c.car_id)} · ${esc(c.system)} ${esc(c.system_version)} · ${esc(c.status)}</option>`).join('')||'<option>belum ada</option>'}</select></label>`;
+const bindPick=()=>{const p=$('#pk');if(p)p.onchange=async()=>{await pick(p.value);go(S.page)}};
+function radar(d){const k=Object.entries(d).filter(([,v])=>v.score!=null);if(k.length<3)return'<p class="mute">Perlu ≥3 domain.</p>';const R=110,c=150,n=k.length,pt=(i,r)=>[c+r*Math.sin(2*Math.PI*i/n),c-r*Math.cos(2*Math.PI*i/n)];
+const ring=f=>k.map((_,i)=>pt(i,R*f).join(',')).join(' '),poly=k.map(([,v],i)=>pt(i,R*v.score).join(',')).join(' ');
+return`<svg class="sv" viewBox="0 0 300 300" width="300" role="img" aria-label="Skor per domain">${[.25,.5,.75,1].map(f=>`<polygon points="${ring(f)}" fill="none" stroke="#d9dfe8"/>`).join('')}${k.map((_,i)=>`<line x1="${c}" y1="${c}" x2="${pt(i,R)[0]}" y2="${pt(i,R)[1]}" stroke="#d9dfe8"/>`).join('')}<polygon points="${poly}" fill="rgba(22,53,232,.12)" stroke="#1635e8" stroke-width="2"/>${k.map(([n_,v],i)=>{const[x,y]=pt(i,R+22);return`<text x="${x}" y="${y}" font-family="Rajdhani" font-size="13" font-weight="600" text-anchor="middle" fill="#0d1624">${esc(n_)}</text>`}).join('')}</svg>`}
+const metricRows=car=>Object.entries(car.domains).flatMap(([d,x])=>Object.entries(x.metrics).map(([m,r])=>`<tr><td>${esc(d)}</td><td class="mono">${esc(m)}</td><td>${fmt(r.value)}</td><td class="mono">${r.ci_95?'['+r.ci_95.map(v=>(+v).toFixed(2)).join(', ')+']':'—'}</td><td>${r.n}</td><td>${chip(r.status)}</td></tr>`)).join('');
+const V={
+overview(){const c=S.car;if(!c){$('#view').innerHTML=`<h1>Ringkasan</h1><p class="lead">Belum ada assurance record. Buka <b>Evaluasi</b> untuk menjalankan yang pertama.</p>`;return}
+const L=['Unverified','Evaluated','Evidence-Backed','Assured','Independently Attested'];
+$('#view').innerHTML=`<h1>${esc(c.system.name)} <span class="mute" style="font-size:16px">${esc(c.system.version)}</span></h1><p class="lead">${esc(c.car_id)} · profil ${esc(c.evaluation.profile)} · CATERYA mengukur dan mendokumentasikan; governance yang memutuskan.</p>${picker()}
+<div class="hero" style="margin-top:18px"><div class="ladder" role="list" aria-label="Level assurance">${L.map((n,i)=>`<div role="listitem" class="rung ${i<=c.level?'on':''} ${i===c.level?'top':''}"><i>${i}</i><small>${n}</small></div>`).join('')}</div><div>${radar(c.domains)}</div></div>
+<div class="kv"><div><small>Disposisi</small><b>${esc(c.disposition.status)}</b></div><div><small>Rekomendasi</small><b>${esc(c.disposition.recommended)}</b></div><div><small>Risiko</small><b class="${esc(c.risk.level)}">${esc(c.risk.level)}</b></div><div><small>Berlaku hingga</small><b style="font-size:14px">${esc(c.validity.valid_until.slice(0,10))}</b></div></div>
+${c.disposition.decided_by?`<div class="note">Keputusan: <b>${esc(c.disposition.status)}</b> oleh ${esc(c.disposition.decided_by)} (${esc(c.disposition.role)}). ${esc(c.disposition.rationale)}</div>`:''}
+<h2>Metrik</h2><table><tr><th>Domain</th><th>Metrik</th><th>Nilai</th><th>CI 95%</th><th>n</th><th>Status</th></tr>${metricRows(c)}</table>
+<h2>Temuan</h2>${c.risk.findings.length?`<table>${c.risk.findings.map(f=>`<tr><td>${chip(f.severity)}</td><td>${esc(f.message)}</td><td class="mute">${f.hard_gate?'hard gate':''}</td></tr>`).join('')}</table>`:'<p class="mute">Tidak ada temuan.</p>'}
+<h2>Belum diuji</h2>${c.coverage.untested.length?`<ul>${c.coverage.untested.map(u=>`<li>${esc(u)}</li>`).join('')}</ul>`:'<p class="mute">Tidak ada celah yang dideklarasikan.</p>'}
+<div class="note">Indeks turunan COS: <b>${c.cos.cos==null?'n/a':(+c.cos.cos).toFixed(3)}</b>. COS bukan sertifikat dan tidak mencakup domain safety/security; baca bukti di atas.</div>
+<h2>Catat keputusan governance</h2><div class="row"><label>Keputusan<select id="dd"><option>ASSURED</option><option>CONDITIONALLY_ASSURED</option><option>REJECTED</option><option>REVIEW_REQUIRED</option></select></label><label>Oleh<input id="db"></label><label>Peran<input id="dr"></label><label>Alasan<input id="dn" size="30"></label><label>Alasan override<input id="do"></label><button class="act" id="dgo">Catat keputusan</button></div><div id="dmsg" class="mute"></div>`;bindPick();
+$('#dgo').onclick=async()=>{try{await api(`/v1/assurance/${c.car_id}/decision`,{method:'POST',body:{decision:$('#dd').value,decided_by:$('#db').value,role:$('#dr').value,rationale:$('#dn').value,override_reason:$('#do').value}});await refresh(true);go('overview')}catch(e){$('#dmsg').innerHTML=`<span class="fail">${esc(e.message)}</span>`}}},
+async evaluate(){const pr=await api('/v1/profiles').catch(()=>[]),bh=await api('/v1/mock-behaviors').catch(()=>['robust']);
+$('#view').innerHTML=`<h1>Evaluasi</h1><p class="lead">Jalankan profil pada sebuah sistem. Mock model hanya untuk demo pipeline; hasilnya tidak berlaku untuk model nyata.</p>
+<div class="row"><label>Nama sistem<input id="en" value="demo-assistant"></label><label>Versi<input id="ev" value="1.0.0"></label><label>Profil<select id="ep">${pr.map(p=>`<option>${esc(p.id)}</option>`).join('')}</select></label>
+<label>Adapter<select id="ea">${bh.map(b=>`<option value="mock:${b}">mock · ${b}</option>`).join('')}<option value="none">tanpa model</option></select></label><label>Severity mock<input id="es" type="number" min="0" max="1" step=".1" value=".5"></label>
+<label>Agen simulasi<select id="eg"><option value="">tidak ada</option><option>safe</option><option>reckless</option></select></label><label>Kedalaman<select id="ed"><option>light</option><option selected>standard</option><option>deep</option></select></label><button class="act" id="ego">Jalankan</button></div><div id="eout"></div>`;
+$('#ego').onclick=async()=>{const k=$('#ea').value,b=$('#ego');b.disabled=true;$('#eout').innerHTML='<p class="mute">Menjalankan…</p>';try{const r=await api('/v1/evaluations',{method:'POST',body:{system:{name:$('#en').value,version:$('#ev').value,provider:'caterya-mock',model_id:k,model_version:'1.0',code_hash:'sha256:demo',environment:{image:'demo'},dataset_hashes:{demo:'sha256:demo'}},profile:$('#ep').value,adapter:{kind:k.startsWith('mock')?k+':'+$('#es').value:k},agent:$('#eg').value||null,depth:$('#ed').value}});await refresh();await pick(r.car.car_id);go('overview')}catch(e){$('#eout').innerHTML=`<div class="note fail">${esc(e.message)}</div>`}b.disabled=false}},
+evidence(){const c=S.car;$('#view').innerHTML=`<h1>Evidence</h1><p class="lead">Setiap hasil adalah catatan lengkap: klaim, spesifikasi metrik (hash), dataset (hash), seed, CI, batasan, dan tanda tangan.</p>${picker()}
+<table style="margin-top:14px"><tr><th>ID</th><th>Metrik</th><th>Hasil</th><th>CI 95%</th><th>Hash konten</th></tr>${S.evs.map((e,i)=>`<tr class="click" data-i="${i}"><td class="mono">${esc(e.id)}</td><td class="mono">${esc(e.metric)}</td><td>${fmt(e.result)}</td><td class="mono">${e.ci_95?'['+e.ci_95.map(v=>v.toFixed(2)).join(', ')+']':'—'}</td><td class="mono">${esc(e.content_hash.slice(0,24))}…</td></tr>`).join('')}</table><div id="evd"></div>`;bindPick();
+document.querySelectorAll('tr.click').forEach(r=>r.onclick=async()=>{const e=S.evs[r.dataset.i],v=await api(`/v1/evidence/${e.id}/verify`);$('#evd').innerHTML=`<h2>${esc(e.id)}</h2><div class="note">Hash &amp; tanda tangan: ${chip(v.valid?'pass':'fail')} · Inclusion proof Merkle: ${chip(v.inclusion_proof_valid?'pass':'fail')}</div><pre>${esc(JSON.stringify(e,null,2))}</pre>`})},
+records(){$('#view').innerHTML=`<h1>Assurance records</h1><p class="lead">Kontekstual, berversi, dan terbatas waktu. Level menunjukkan kedalaman dan keterverifikasian proses, bukan peringkat kualitas model.</p><table><tr><th>CAR</th><th>Sistem</th><th>Profil</th><th>Level</th><th>Disposisi</th><th>Risiko</th></tr>${S.cars.map(c=>`<tr class="click" data-id="${esc(c.car_id)}"><td class="mono">${esc(c.car_id)} v${c.version}</td><td>${esc(c.system)} ${esc(c.system_version)}</td><td>${esc(c.profile)}</td><td>${c.level} ${esc(c.level_label)}</td><td>${esc(c.status)}</td><td class="${esc(c.risk)}">${esc(c.risk)}</td></tr>`).join('')}</table>`;
+document.querySelectorAll('tr.click').forEach(r=>r.onclick=async()=>{await pick(r.dataset.id);go('overview')})},
+regression(){const o=S.cars.map(c=>`<option value="${esc(c.car_id)}">${esc(c.car_id)} · ${esc(c.system)} ${esc(c.system_version)}</option>`).join('');
+$('#view').innerHTML=`<h1>Regresi trustworthiness</h1><p class="lead">Tujuannya mendeteksi perubahan profil perilaku dan trade-off, bukan memilih model yang “lebih baik”.</p><div class="row"><label>Lama<select id="ro">${o}</select></label><label>Baru<select id="rn">${o}</select></label><button class="act" id="rg">Bandingkan</button></div><div id="rr"></div>`;
+if(S.cars.length>1)$('#rn').selectedIndex=S.cars.length-1;$('#rg').onclick=async()=>{try{const r=await api('/v1/compare',{method:'POST',body:{old:$('#ro').value,new:$('#rn').value}});$('#rr').innerHTML=`<table><tr><th>Metrik</th><th>Domain</th><th>Lama</th><th>Baru</th><th>Δ</th><th>Perubahan</th></tr>${r.rows.map(x=>`<tr><td class="mono">${esc(x.metric_id)}</td><td>${esc(x.domain)}</td><td>${fmt(x.old)}</td><td>${fmt(x.new)}</td><td>${x.delta==null?'—':(x.delta>0?'+':'')+x.delta.toFixed(3)}</td><td class="${x.change.includes('↓')?'fail':x.change.includes('↑')?'pass':''}"><b>${esc(x.change)}</b></td></tr>`).join('')}</table><div class="note">${r.passed?'Tidak ada regresi di atas batas.':'Regresi: '+r.regressions.map(x=>esc(x.metric_id)).join(', ')}${r.tradeoff?' · terdeteksi trade-off.':''} <span class="mute">${esc(r.note)}</span></div>`}catch(e){$('#rr').innerHTML=`<div class="note fail">${esc(e.message)}</div>`}}},
+async provenance(){const h=await api('/v1/log/head').catch(()=>null),c=S.car;let vc=null;if(c&&c.car_id!=='CAR-DEMO')vc=await api(`/v1/assurance/${c.car_id}/verify`).catch(()=>null);
+$('#view').innerHTML=`<h1>Provenance</h1><p class="lead">Rantai hash, transparency log berbasis pohon Merkle, dan tanda tangan. Blockchain hanya opsi jangkar, bukan syarat.</p>${h?`<div class="kv"><div><small>Ukuran log</small><b>${h.size}</b></div><div><small>Kunci penanda tangan</small><b class="mono">${esc(h.key_id)}</b></div><div><small>Waktu STH</small><b style="font-size:13px">${esc(h.timestamp)}</b></div></div><p class="mono">root ${esc(h.root)}</p>`:''}
+${vc?`<div class="note">Integritas CAR ${esc(c.car_id)}: ${chip(vc.valid?'pass':'fail')} ${esc(vc.problems.join('; '))}</div>`:''}${picker()}
+<h2>Rantai evidence</h2><div class="chain">${S.evs.map(e=>`<div class="link">${esc(e.id)} ← prev ${esc((e.prev_hash||'genesis').slice(0,22))}…<br><span class="mute">${esc(e.metric)} · ${esc(e.timestamp)}</span></div>`).join('')||'<p class="mute">Kosong.</p>'}</div>`;bindPick()},
+monitor(){$('#view').innerHTML=`<h1>Monitoring berkelanjutan</h1><p class="lead">Kirim sinyal perilaku (nilai lebih tinggi = lebih baik). 50 nilai pertama menjadi baseline; PSI, KS, dan CUSUM mendeteksi drift lalu memicu evaluasi ringan atau mendalam.</p>
+<div class="row"><label>Sistem<input id="ms" value="demo-assistant"></label><label>Sinyal<input id="mn" value="canary_pass_rate"></label><label>Simulasi<select id="mm"><option value="stable">stabil</option><option value="drift">drift turun</option></select></label><button class="act" id="mg">Kirim 80 nilai</button></div><div id="mo"></div>`;
+$('#mg').onclick=async()=>{const d=$('#mm').value==='drift',v=[];for(let i=0;i<80;i++){const b=.9+Math.sin(i*1.7)*.02;v.push(i>=50&&d?b-.25:b)}try{const r=await api('/v1/monitor/signals',{method:'POST',body:{system:$('#ms').value,signal:$('#mn').value,values:v}});$('#mo').innerHTML=`<h2>Hasil</h2>${r.alerts.length?`<table>${r.alerts.map(a=>`<tr><td>${chip(a.severity==='alert'?'fail':'warn')}</td><td>${esc(a.kind)}</td><td>${esc(a.detail)}</td></tr>`).join('')}</table>`:'<p class="mute">Tidak ada alert.</p>'}<div class="note">Pemicu evaluasi ulang: <b>${r.trigger?esc(r.trigger.depth)+' — '+esc(r.trigger.reason):'tidak ada'}</b></div>`}catch(e){$('#mo').innerHTML=`<div class="note fail">${esc(e.message)}</div>`}}},
+async regulatory(){const fw=await api('/v1/regulatory/frameworks').catch(()=>({}));$('#view').innerHTML=`<h1>Pemetaan regulasi</h1><p class="lead">Klausul → uji teknis. Menunjukkan bukti teknis yang tersedia, bukan kepatuhan hukum.</p>${picker()}<label style="margin-top:10px">Kerangka<select id="rf"><option value="">semua</option>${Object.keys(fw).map(k=>`<option>${esc(k)}</option>`).join('')}</select></label><div id="rm"></div>`;bindPick();
+const load=async()=>{if(!S.car||S.car.car_id==='CAR-DEMO')return;const m=await api(`/v1/assurance/${S.car.car_id}/regulatory`+($('#rf').value?'?framework='+$('#rf').value:''));$('#rm').innerHTML=Object.entries(m.mapping).map(([k,cs])=>`<h2>${esc(k)}</h2><table><tr><th>Klausul</th><th>Tema</th><th>Status</th><th>Uji</th></tr>${cs.map(c=>`<tr><td>${esc(c.clause)}</td><td>${esc(c.title)}</td><td>${chip(c.status==='evidenced'?'pass':c.status==='partial'?'warn':c.status==='gap'?'fail':'info')} <span class="mute">${esc(c.status)}</span></td><td class="mono">${esc(c.metrics.join(', ')||'—')}</td></tr>`).join('')}</table>`).join('')+`<p class="mute">${esc(m.disclaimer)}</p>`};$('#rf').onchange=load;load()},
+async settings(){const [p,c,m]=await Promise.all([api('/v1/parameters'),api('/v1/capabilities'),api('/v1/metrics')]);
+$('#view').innerHTML=`<h1>Parameter &amp; kapabilitas</h1><p class="lead">Quantum, jangkar rantai, dan zero-knowledge adalah capability flag, bukan nama produk.</p><pre>${esc(JSON.stringify(c,null,2))}</pre>
+<h2>Metrik terdaftar (${m.length})</h2><table><tr><th>ID</th><th>Domain</th><th>Status</th><th>Hash spesifikasi</th></tr>${m.map(x=>`<tr><td class="mono">${esc(x.id)}</td><td>${esc(x.domain)}</td><td>${esc(x.status)}</td><td class="mono">${esc(x.spec_hash.slice(0,26))}…</td></tr>`).join('')}</table>
+<h2>Parameter (${p.length})</h2><table><tr><th>Env</th><th>Default</th><th>Keterangan</th></tr>${p.map(x=>`<tr><td class="mono">${esc(x.env)}</td><td class="mono">${esc(JSON.stringify(x.default))}</td><td>${esc(x.help)}</td></tr>`).join('')}</table>`}};
+boot();
+</script>
+</body>
+</html>
