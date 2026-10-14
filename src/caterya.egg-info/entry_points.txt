@@ -1,0 +1,2 @@
+[console_scripts]
+caterya = caterya.cli.main:main
